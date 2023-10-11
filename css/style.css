@@ -1,0 +1,277 @@
+/* Global */
+:root {
+    --dark-colour: #888;
+    --light-colour: #eee;
+
+
+    --brand-colour-light: #0d8b08;    
+    --brand-colour-mid: #0d590a;
+    --brand-colour-dark: #053903;
+    --brand-colour-transparent: #02260175;
+
+
+    --font-ratio: 1.25;
+    --main-heading: calc(2.5rem * var(--font-ratio));
+    --tagline: calc(2rem * var(--font-ratio));
+    --secondary-heading: calc(1.375rem * var(--font-ratio));
+    --body-text: calc(1.125rem * var(--font-ratio));
+
+    --nav-menu: calc(1.25rem * var(--font-ratio));
+
+
+    --hero-padding-ratio: 1.5;
+    --hero-padding-top: calc(6.25rem / var(--hero-padding-ratio))
+
+
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    background-color: #053903;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+    max-width: 64rem;
+    margin: 2rem auto;
+    border: solid 0.3125rem var(--light-colour);
+    border-radius: 0.25rem;
+    box-shadow: 0 0 0.3125rem var(--light-colour);
+}
+
+
+/* Header */
+header {
+    background-color: var(--brand-colour-dark);
+    /* position: fixed; */
+    width: 100%;
+}
+nav {
+    padding: 0.625rem;
+    text-align: right;
+}
+#menu {
+    list-style-type: none;
+    display: flex;
+    justify-content: end;
+    gap: 1.5rem;
+}
+#menu a {
+    text-decoration: none;
+    color: var(--light-colour);
+    padding: 1.25rem 0;
+}
+#menu-toggle {
+    display: none;
+    background-color: var(--brand-colour-dark);
+    color: var(--light-colour);
+    border: none;
+}
+#menu.active {
+    display: flex;
+}
+
+
+
+
+/* Hero */
+.hero {
+    padding-top: var(--hero-padding-top);
+    min-height: 25rem;
+    background-image: url(../img/hero.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.hero h1, .hero p {
+    background-color: var(--brand-colour-transparent);
+    padding: 0.7rem;
+    color: var(--light-colour);
+}
+.hero h1 {
+    font-size: var(--main-heading);
+}
+.hero p, li {
+    font-size: var(--body-text);
+}
+
+/* Section */
+section {
+    max-width: 65rem;
+    margin: auto;
+}
+
+
+
+
+/* About */
+.about {
+    background-color: var(--brand-colour-mid);
+    color: var(--light-colour);
+    text-align: center;
+}
+.tagline {
+    margin: auto;
+    padding-top: 1.5rem;
+    font-size: var(--tagline);
+}
+.description {
+    margin: auto;
+    padding: 1.5rem;
+    max-width: 70ch;
+    font-size: var(--body-text);
+}
+
+
+
+
+/* Gallery Images */
+.gallery {
+    padding: 1rem;
+    background-color: var(--brand-colour-light);
+    border-top: solid 0.125rem var(--light-colour);
+}
+
+.gallery-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.gallery-images img {
+    width: 100%;
+    height: 18.75rem;
+    object-fit: cover;
+    border: solid 0.125rem var(--light-colour);
+}
+.gallery h3 {
+    margin: 1rem;
+    text-align: center;
+    color: var(--light-colour);
+}
+
+
+/* Contact */
+.contact {
+    background-color: var(--brand-colour-mid);
+    color: var(--light-colour);
+    text-align: center;
+}
+
+.socials {
+    margin: auto;
+    padding: 1.75rem;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3rem;
+
+}
+.secondary {
+    margin: auto;
+    padding: 1.5rem;
+    font-size: var(--secondary-heading);
+}
+
+
+
+
+
+/* Footer */
+footer ul {
+    margin: 0;
+    padding: 1.5rem;
+    background-color: var(--brand-colour-dark);
+    border-top: solid 0.125rem var(--light-colour);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+footer li {
+    list-style: none;
+    margin: 0.625rem;
+}
+
+footer li a:link {
+    color: var(--light-colour);
+    background-color: transparent;
+    text-decoration: none;
+}
+
+footer li a:visited {
+    color: var(--light-colour);
+}
+
+footer li a:hover {
+    text-shadow: 0rem 0rem 1rem var(--light-colour);
+}
+
+footer li a:active {
+    color: var(--brand-colour-light);
+}
+
+
+
+/* Media Queries */
+
+/* media query for laptop - less than 1024px */
+@media screen and (max-width:64em) {
+    :root {
+        --font-ratio: 1.2;
+    }
+
+    .wrapper {
+        margin: 0 auto;
+        border: none;
+        border-radius: none;
+        box-shadow: none;
+    }
+
+}
+
+/* media query for tablet - less than 768px */
+@media screen and (max-width:48em) {
+    :root {
+        --font-ratio: 0.9;
+        --hero-padding-ratio: 2;
+    }
+
+    .gallery-images {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+    }
+}
+
+/* media query for mobile - less than 480px */
+@media screen and (max-width: 30em) {
+    :root {
+        --font-ratio: 0.75;
+        --hero-padding-ratio: 3;
+    }
+    #menu-toggle {
+        display: inline;
+    }
+    #menu {
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        right: 1rem;
+        background-color: var(--brand-colour-mid);
+        padding: 1.25rem;
+    }
+
+    .gallery-images {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+    }
+}
