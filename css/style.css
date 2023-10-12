@@ -1,18 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500;700&display=swap');
+
 /* Global */
 :root {
     --dark-colour: #8a8875;
     --light-colour: #fffdf0;
-
+    --brand-colour-yellow: #f1ca4a;
     --brand-colour-light: #a20da5;    
     --brand-colour-mid: #6a0f60;
     --brand-colour-dark: #41043e;
     --brand-colour-black: #230531;
-    --brand-colour-transparent: #1a0126c7;
-
+    --brand-colour-transparent: #1a01268c;
     --font-ratio: 1.25;
     --main-heading: calc(2.5rem * var(--font-ratio));
-    --tagline: calc(1.875rem * var(--font-ratio));
-    --secondary-heading: calc(1.375rem * var(--font-ratio));
+    --about-heading: calc(1.875rem * var(--font-ratio));
+    --socials-heading: calc(1.375rem * var(--font-ratio));
     --body-text: calc(1.125rem * var(--font-ratio));
 }
 * {
@@ -24,14 +25,14 @@ html {
     background-color: var(--brand-colour-black);
 }
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 .wrapper {
     max-width: 64rem;
     margin: 2rem auto;
     border: solid 0.3125rem var(--light-colour);
     border-radius: 0.25rem;
-    box-shadow: 0 0 0.3125rem var(--light-colour);
+    box-shadow: 0 0 0.625rem var(--brand-colour-yellow);
 }
 
 /* Header */
@@ -72,7 +73,7 @@ nav {
 /* Hero */
 .hero {
     min-height: 25rem;
-    background-image: url(../img/hero.jpg);
+    background-image: radial-gradient(circle, var(--brand-colour-transparent) 20%, var(--brand-colour-black) 100%), url(../img/hero.jpg);
     background-size: cover;
     background-position: center;
     display: flex;
@@ -80,16 +81,19 @@ nav {
     justify-content: center;
     align-items: center;
 }
-.hero h1, .hero p {
+.hero-main, .hero-sub {
     background-color: var(--brand-colour-transparent);
     padding: 0.7rem;
-    color: var(--light-colour);
+    color: var(--brand-colour-yellow);
+    text-align: center;
 }
-.hero h1 {
+.hero-main {
     font-size: var(--main-heading);
+    font-weight: 700;
 }
-.hero p, li {
+.hero-sub, li {
     font-size: var(--body-text);
+    font-weight: 500;
 }
 
 /* Section */
@@ -98,25 +102,26 @@ section {
     margin: auto;
 }
 
-/* About / Contact */
-.about, .contact {
+/* About / Socials */
+.about, .socials {
     background-color: var(--brand-colour-mid);
-    color: var(--light-colour);
+    color: var(--brand-colour-yellow);
     border-top: solid 0.125rem var(--light-colour);
     text-align: center;
 }
-.tagline {
+.about-heading {
     margin: auto;
     padding-top: 1.5rem;
-    font-size: var(--tagline);
+    font-size: var(--about-heading);
 }
-.description {
+.about-body {
     margin: auto;
     padding: 1.875rem;
     max-width: 70ch;
     font-size: var(--body-text);
+    color: var(--light-colour);
 }
-.socials {
+.social-links {
     margin: auto;
     padding: 1rem 0 2rem 0;
     list-style: none;
@@ -125,33 +130,34 @@ section {
     justify-content: center;
     gap: 3rem;
 }
-.secondary {
+.socials-heading {
     margin: auto;
     padding: 2rem 0 1rem 0;
-    font-size: var(--secondary-heading);
+    font-size: var(--socials-heading);
 }
 
-/* Gallery Images */
-.gallery {
+/* Video Gallery */
+.videos {
     padding: 1rem;
-    background-color: var(--brand-colour-light);
+    background-color:  var(--brand-colour-light);
     border-top: solid 0.125rem var(--light-colour);
 }
-.gallery-images {
+.videos-thumbnails {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
 }
-.gallery-images img {
+.videos-thumbnails img {
     width: 100%;
-    height: 12.5rem;
+    height: 11rem;
     object-fit: cover;
     border: solid 0.125rem var(--light-colour);
 }
-.gallery h3 {
+.videos h3 {
     margin: 1rem;
     text-align: center;
-    color: var(--light-colour);
+    color: var(--brand-colour-yellow);
+    font-size: var(--socials-heading);
 }
 
 /* Footer */
@@ -170,6 +176,7 @@ footer ul {
 li {
     list-style: none;
     margin: 0.625rem;
+    max-height: 2rem;
 }
 li a:link {
     color: var(--light-colour);
@@ -180,15 +187,15 @@ li a:visited {
     color: var(--light-colour);
 }
 li a:hover {
-    text-shadow: 0rem 0rem 1rem var(--light-colour);
+    text-shadow: 0rem 0rem 1rem var(--brand-colour-yellow);
 }
 li a:active {
-    color: var(--brand-colour-light);
+    color: var(--brand-colour-black);
 }
 
 /* Media Queries */
 
-/* media query for laptop - less than 1024px */
+/* media query for laptop - less than 1024px/64rem */
 @media screen and (max-width:64em) {
     :root {
         --font-ratio: 1.2;
@@ -196,12 +203,12 @@ li a:active {
     .wrapper {
         margin: 0 auto;
         border: none;
-        border-radius: none;
+        border-radius: 0;
         box-shadow: none;
     }
 }
 
-/* media query for tablet - less than 768px */
+/* media query for tablet - less than 768px/48rem */
 @media screen and (max-width:48em) {
     :root {
         --font-ratio: 0.9;
@@ -209,16 +216,19 @@ li a:active {
     .hero {
         min-height: 20rem;
     }
-    .socials {
+    .social-links {
         gap: 1.25rem;
     }
-    .gallery-images {
+    .videos-thumbnails {
         grid-template-columns: 1fr 1fr;
         gap: 0.8rem;
     }
+    .videos-thumbnails img {
+        height: 12.6rem;
+    }
 }
 
-/* media query for mobile - less than 480px */
+/* media query for mobile - less than 480px/30rem */
 @media screen and (max-width: 30em) {
     :root {
         --font-ratio: 0.75;
@@ -234,20 +244,23 @@ li a:active {
         background-color: var(--brand-colour-dark);
         border: solid 0.125rem var(--light-colour);
         border-radius: 0.25rem;
-        box-shadow: 0 0 0.125rem var(--light-colour);
+        box-shadow: 0 0 0.125rem var(--brand-colour-yellow);;
         padding: 1.25rem;
     }
     .hero {
         min-height: 15rem;
     }
-    .description {
+    .about-body {
         padding: 1.25rem;
+    }
+    .videos-thumbnails {
+        grid-template-columns: 1fr;
+        gap: 0.6rem;
+    }
+    .videos-thumbnails img {
+        height: 16rem;
     }
     footer ul{
         gap: 1rem;
-    }
-    .gallery-images {
-        grid-template-columns: 1fr;
-        gap: 0.6rem;
     }
 }
